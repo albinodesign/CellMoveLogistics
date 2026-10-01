@@ -1,0 +1,66 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import CookieBanner from '../components/CookieBanner.astro';
+
+const pageTitle = "Seite nicht gefunden | CellMove Logistics";
+const pageDescription = "Die aufgerufene Seite existiert nicht. Nutzen Sie die Navigation oder kontaktieren Sie uns direkt.";
+---
+
+<Layout title={pageTitle} description={pageDescription}>
+  <Header />
+
+  <main id="main-content">
+    <section
+      class="relative pt-32 pb-12 lg:pt-40 lg:pb-16 bg-dark-900"
+      aria-labelledby="error-heading"
+    >
+      <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <p class="text-7xl sm:text-8xl lg:text-9xl font-bold text-brand mb-6">404</p>
+
+        <h1 id="error-heading" class="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-4">
+          Diese Seite konnten wir nicht finden
+        </h1>
+
+        <p class="text-lg text-gray-300 mb-10">
+          Die aufgerufene Adresse existiert nicht oder wurde verschoben.
+          Möglicherweise hilft Ihnen einer der folgenden Links weiter.
+        </p>
+
+        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+          <a
+            href="/"
+            class="bg-brand hover:bg-brand-dark text-dark-900 font-semibold px-6 py-3 rounded-lg transition-colors"
+          >
+            Zur Startseite
+          </a>
+          <a
+            href="/services"
+            class="border border-dark-600 text-gray-300 hover:text-white hover:border-brand px-6 py-3 rounded-lg transition-colors"
+          >
+            Unsere Leistungen
+          </a>
+          <a
+            href="/contact"
+            class="border border-dark-600 text-gray-300 hover:text-white hover:border-brand px-6 py-3 rounded-lg transition-colors"
+          >
+            Kontakt aufnehmen
+          </a>
+        </div>
+
+        <p class="text-gray-400 mt-10">
+          Sie suchen ein Angebot für einen Gefahrguttransport?
+          Schreiben Sie uns unter
+          <a href="mailto:contact@cellmove-logistics.com" class="text-brand hover:underline">
+            contact@cellmove-logistics.com</a>
+          oder rufen Sie uns an unter
+          <a href="tel:+4915560114442" class="text-brand hover:underline">+49 155 60 11 44 42</a>.
+        </p>
+      </div>
+    </section>
+  </main>
+
+  <Footer />
+  <CookieBanner />
+</Layout>

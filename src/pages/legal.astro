@@ -21,10 +21,24 @@ const companyData = {
   },
   register: {
     court: "Amtsgericht Stuttgart",
-    number: "HRB [Nummer]" // Platzhalter - muss ergänzt werden
+    number: "HRB [Nummer]" // PLATZHALTER - echte Handelsregisternummer eintragen
   },
-  vat: "DE [USt-IdNr]" // Platzhalter - muss ergänzt werden
+  vat: "DE [USt-IdNr]" // PLATZHALTER - echte USt-IdNr. eintragen
 };
+
+// Ohne HRB-Nummer und USt-IdNr. ist das Impressum unvollstaendig und in
+// Deutschland nicht abnahmefaehig. Der Build laeuft bewusst weiter, damit die
+// Seite lokal angesehen werden kann - die Platzhalter duerfen aber nicht live
+// gehen.
+const unvollstaendig = [companyData.register.number, companyData.vat]
+  .filter((wert) => wert.includes('['));
+
+if (unvollstaendig.length) {
+  console.warn(
+    `[legal.astro] Impressum unvollstaendig: ${unvollstaendig.join(' und ')} stehen ` +
+    'noch als Platzhalter in src/pages/legal.astro (companyData). Vor dem Livegang ersetzen.'
+  );
+}
 ---
 
 <Layout title={pageTitle} description={pageDescription}>

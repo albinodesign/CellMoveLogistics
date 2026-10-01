@@ -3,7 +3,6 @@ import Layout from '../layouts/Layout.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import CookieBanner from '../components/CookieBanner.astro';
-import PlaceholderImage from '../components/PlaceholderImage.astro';
 
 const pageTitle = "Kontakt | CellMove Logistics - Transportanfrage";
 const pageDescription = "Kontaktieren Sie CellMove Logistics für Ihren Batterietransport. Anfragen unter +49 155 60 11 44 42 oder per Formular. ADR-konforme Gefahrguttransporte europaweit.";
@@ -35,6 +34,19 @@ const formFields = {
     { value: "sonstiges", label: "Sonstiges / Unsicher" }
   ]
 };
+
+// Web3Forms-Key kommt aus der Build-Umgebung (Vercel: PUBLIC_WEB3FORMS_KEY),
+// damit der Key nicht im Repository liegt. Siehe AGENTS.md.
+const web3FormsKey = import.meta.env.PUBLIC_WEB3FORMS_KEY;
+
+if (!web3FormsKey) {
+  console.warn(
+    '[contact.astro] PUBLIC_WEB3FORMS_KEY ist nicht gesetzt - das Kontaktformular ' +
+    'wird mit dem Platzhalter ausgeliefert und funktioniert nicht. Key kostenlos unter ' +
+    'https://web3forms.com/ holen und in den Vercel-Projekt-Einstellungen als ' +
+    'Environment Variable (PUBLIC_WEB3FORMS_KEY) hinterlegen.'
+  );
+}
 ---
 
 <Layout title={pageTitle} description={pageDescription}>
@@ -90,8 +102,8 @@ const formFields = {
                 class="space-y-6"
                 aria-label="Kontaktformular"
               >
-                <!-- Web3Forms Access Key - Replace with actual key in production -->
-                <input type="hidden" name="access_key" value="YOUR_ACCESS_KEY_HERE" />
+                <!-- Web3Forms Access Key - kommt aus PUBLIC_WEB3FORMS_KEY (siehe AGENTS.md) -->
+                <input type="hidden" name="access_key" value={web3FormsKey ?? ''} />
                 
                 <!-- Honeypot Spam Protection -->
                 <input 
