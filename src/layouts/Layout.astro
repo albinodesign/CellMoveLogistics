@@ -1,0 +1,102 @@
+---
+export interface Props {
+  title: string;
+  description: string;
+}
+
+const { title, description } = Astro.props;
+const canonicalURL = new URL(Astro.url.pathname, Astro.site || 'https://cellmove-logistics.com');
+---
+
+<!DOCTYPE html>
+<html lang="de" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content={description} />
+    <meta name="robots" content="index, follow" />
+    <meta name="theme-color" content="#0f172a" />
+    
+    <!-- Canonical -->
+    <link rel="canonical" href={canonicalURL} />
+    
+    <!-- Open Graph -->
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="de_DE" />
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="/images/cellmove_favicon.svg" />
+    
+    <!-- Local Font: Inter -->
+    <link rel="preload" href="/fonts/inter-var.woff2" as="font" type="font/woff2" crossorigin />
+    
+    <title>{title}</title>
+    
+    <!-- Structured Data: LocalBusiness -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "LocalBusiness",
+      "name": "CellMove Logistics GmbH",
+      "description": "Europaweiter Gefahrguttransport für Lithium-Ionen Batterien, Zellen und Module",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Peter-Rosegger-Str. 4",
+        "addressLocality": "Reutlingen",
+        "postalCode": "72762",
+        "addressCountry": "DE"
+      },
+      "telephone": "+49 155 60 11 44 42",
+      "email": "contact@cellmove-logistics.com",
+      "url": "https://cellmove-logistics.com",
+      "sameAs": [],
+      "priceRange": "€€"
+    }
+    </script>
+    
+    <style is:global>
+      @font-face {
+        font-family: 'Inter';
+        src: url('/fonts/inter-var.woff2') format('woff2-variations');
+        font-weight: 100 900;
+        font-display: swap;
+      }
+      
+      :root {
+        --brand-color: #a5d34f;
+        --brand-dark: #8eb840;
+      }
+      
+      body {
+        font-family: 'Inter', system-ui, sans-serif;
+      }
+      
+      /* Focus visible styles for accessibility */
+      *:focus-visible {
+        outline: 2px solid var(--brand-color);
+        outline-offset: 2px;
+      }
+      
+      /* Smooth scroll */
+      html {
+        scroll-behavior: smooth;
+      }
+      
+      /* Reduced motion preference */
+      @media (prefers-reduced-motion: reduce) {
+        *, *::before, *::after {
+          animation-duration: 0.01ms !important;
+          animation-iteration-count: 1 !important;
+          transition-duration: 0.01ms !important;
+          scroll-behavior: auto !important;
+        }
+      }
+    </style>
+  </head>
+  
+  <body class="bg-dark-900 text-white antialiased min-h-screen flex flex-col">
+    <slot />
+  </body>
+</html>

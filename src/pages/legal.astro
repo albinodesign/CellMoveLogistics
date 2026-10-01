@@ -1,0 +1,503 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import CookieBanner from '../components/CookieBanner.astro';
+
+const pageTitle = "Impressum & Datenschutz | CellMove Logistics";
+const pageDescription = "Impressum und Datenschutzerklärung der CellMove Logistics GmbH. Informationen nach TMG und DSGVO.";
+
+const companyData = {
+  name: "CellMove Logistics GmbH",
+  owner: "Christian Gördes",
+  address: {
+    street: "Peter-Rosegger-Str. 4",
+    city: "72762 Reutlingen",
+    country: "Deutschland"
+  },
+  contact: {
+    phone: "+49 155 60 11 44 42",
+    email: "contact@cellmove-logistics.com"
+  },
+  register: {
+    court: "Amtsgericht Stuttgart",
+    number: "HRB [Nummer]" // Platzhalter - muss ergänzt werden
+  },
+  vat: "DE [USt-IdNr]" // Platzhalter - muss ergänzt werden
+};
+---
+
+<Layout title={pageTitle} description={pageDescription}>
+  <Header />
+  
+  <main id="main-content">
+    <!-- Hero -->
+    <section 
+      class="pt-32 pb-12 lg:pt-40 lg:pb-16 bg-dark-900"
+      aria-labelledby="legal-heading"
+    >
+      <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+        <nav aria-label="Breadcrumb" class="mb-6">
+          <ol class="flex items-center gap-2 text-sm">
+            <li><a href="/" class="text-gray-400 hover:text-white transition-colors">Start</a></li>
+            <li class="text-gray-600" aria-hidden="true">/</li>
+            <li class="text-brand">Rechtliches</li>
+          </ol>
+        </nav>
+        
+        <h1 id="legal-heading" class="text-4xl sm:text-5xl font-bold text-white mb-4">
+          Impressum <span class="text-brand">&</span> Datenschutz
+        </h1>
+        <p class="text-gray-400 text-lg">
+          Informationen gemäß Telemediengesetz (TMG) und Datenschutz-Grundverordnung (DSGVO).
+        </p>
+      </div>
+    </section>
+    
+    <!-- Navigation Tabs -->
+    <nav 
+      class="sticky top-16 lg:top-20 z-40 bg-dark-800/95 backdrop-blur-sm border-y border-dark-700"
+      aria-label="Rechtliche Themen"
+    >
+      <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex gap-1 overflow-x-auto py-3">
+          <a 
+            href="#impressum"
+            class="px-4 py-2 text-sm font-medium text-white bg-dark-700 rounded-lg hover:bg-dark-600 transition-colors whitespace-nowrap"
+          >
+            Impressum
+          </a>
+          <a 
+            href="#datenschutz"
+            class="px-4 py-2 text-sm font-medium text-gray-300 hover:text-white bg-dark-700/50 rounded-lg hover:bg-dark-700 transition-colors whitespace-nowrap"
+          >
+            Datenschutz
+          </a>
+          <a 
+            href="#cookies"
+            class="px-4 py-2 text-sm font-medium text-gray-300 hover:text-white bg-dark-700/50 rounded-lg hover:bg-dark-700 transition-colors whitespace-nowrap"
+          >
+            Cookie-Richtlinie
+          </a>
+        </div>
+      </div>
+    </nav>
+    
+    <!-- Content -->
+    <div class="py-12 lg:py-20 bg-dark-900">
+      <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 space-y-20">
+        
+        <!-- IMPRESSUM SECTION -->
+        <section id="impressum" aria-labelledby="impressum-heading">
+          <h2 id="impressum-heading" class="text-3xl font-bold text-white mb-8 pb-4 border-b border-dark-700">
+            Impressum
+          </h2>
+          
+          <div class="space-y-8">
+            <!-- Angaben gemäß TMG -->
+            <div>
+              <h3 class="text-xl font-semibold text-white mb-4">Angaben gemäß § 5 TMG</h3>
+              <address class="not-italic text-gray-300 space-y-1">
+                <p class="font-semibold text-white">{companyData.name}</p>
+                <p>{companyData.address.street}</p>
+                <p>{companyData.address.city}</p>
+                <p>{companyData.address.country}</p>
+              </address>
+            </div>
+            
+            <!-- Vertreten durch -->
+            <div>
+              <h3 class="text-xl font-semibold text-white mb-4">Vertreten durch</h3>
+              <p class="text-gray-300">Geschäftsführer: {companyData.owner}</p>
+            </div>
+            
+            <!-- Kontakt -->
+            <div>
+              <h3 class="text-xl font-semibold text-white mb-4">Kontakt</h3>
+              <dl class="space-y-2">
+                <div class="flex flex-col sm:flex-row sm:gap-4">
+                  <dt class="text-gray-500 w-32">Telefon:</dt>
+                  <dd>
+                    <a href={`tel:+49${companyData.contact.phone.replace(/^0/, '').replace(/\s/g, '')}`} class="text-brand hover:underline">
+                      {companyData.contact.phone}
+                    </a>
+                  </dd>
+                </div>
+                <div class="flex flex-col sm:flex-row sm:gap-4">
+                  <dt class="text-gray-500 w-32">E-Mail:</dt>
+                  <dd>
+                    <a href={`mailto:${companyData.contact.email}`} class="text-brand hover:underline">
+                      {companyData.contact.email}
+                    </a>
+                  </dd>
+                </div>
+              </dl>
+            </div>
+            
+            <!-- Handelsregister -->
+            <div>
+              <h3 class="text-xl font-semibold text-white mb-4">Handelsregister</h3>
+              <p class="text-gray-300">
+                Registergericht: {companyData.register.court}<br/>
+                Handelsregisternummer: {companyData.register.number}
+              </p>
+              <p class="text-gray-500 text-sm mt-2">
+                Hinweis: Die vollständige Registernummer wird nach Eintragung ergänzt.
+              </p>
+            </div>
+            
+            <!-- USt-ID -->
+            <div>
+              <h3 class="text-xl font-semibold text-white mb-4">Umsatzsteuer-ID</h3>
+              <p class="text-gray-300">
+                Umsatzsteuer-Identifikationsnummer gemäß § 27 a Umsatzsteuergesetz:<br/>
+                {companyData.vat}
+              </p>
+              <p class="text-gray-500 text-sm mt-2">
+                Hinweis: Die vollständige USt-IdNr. wird nach Vergeben ergänzt.
+              </p>
+            </div>
+            
+            <!-- Streitschlichtung -->
+            <div>
+              <h3 class="text-xl font-semibold text-white mb-4">Streitschlichtung</h3>
+              <p class="text-gray-300">
+                Die Europäische Kommission stellt eine Plattform zur Online-Streitbeilegung (OS) bereit: 
+                <a 
+                  href="https://ec.europa.eu/consumers/odr" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  class="text-brand hover:underline"
+                >
+                  https://ec.europa.eu/consumers/odr
+                </a>
+              </p>
+              <p class="text-gray-300 mt-3">
+                Wir sind nicht bereit oder verpflichtet, an Streitbeilegungsverfahren vor einer 
+                Verbraucherschlichtungsstelle teilzunehmen.
+              </p>
+            </div>
+            
+            <!-- Haftung für Inhalte -->
+            <div>
+              <h3 class="text-xl font-semibold text-white mb-4">Haftung für Inhalte</h3>
+              <p class="text-gray-300 leading-relaxed">
+                Als Diensteanbieter sind wir gemäß § 7 Abs.1 TMG für eigene Inhalte auf diesen Seiten 
+                nach den allgemeinen Gesetzen verantwortlich. Nach §§ 8 bis 10 TMG sind wir als 
+                Diensteanbieter jedoch nicht verpflichtet, übermittelte oder gespeicherte fremde 
+                Informationen zu überwachen oder nach Umständen zu forschen, die auf eine rechtswidrige 
+                Tätigkeit hinweisen.
+              </p>
+              <p class="text-gray-300 leading-relaxed mt-3">
+                Verpflichtungen zur Entfernung oder Sperrung der Nutzung von Informationen nach den 
+                allgemeinen Gesetzen bleiben hiervon unberührt. Eine diesbezügliche Haftung ist jedoch 
+                erst ab dem Zeitpunkt der Kenntnis einer konkreten Rechtsverletzung möglich. Bei 
+                Bekanntwerden von entsprechenden Rechtsverletzungen werden wir diese Inhalte umgehend 
+                entfernen.
+              </p>
+            </div>
+            
+            <!-- Haftung für Links -->
+            <div>
+              <h3 class="text-xl font-semibold text-white mb-4">Haftung für Links</h3>
+              <p class="text-gray-300 leading-relaxed">
+                Unser Angebot enthält Links zu externen Websites Dritter, auf deren Inhalte wir keinen 
+                Einfluss haben. Deshalb können wir für diese fremden Inhalte auch keine Gewähr übernehmen. 
+                Für die Inhalte der verlinkten Seiten ist stets der jeweilige Anbieter oder Betreiber der 
+                Seiten verantwortlich. Die verlinkten Seiten wurden zum Zeitpunkt der Verlinkung auf 
+                mögliche Rechtsverstöße überprüft. Rechtswidrige Inhalte waren zum Zeitpunkt der 
+                Verlinkung nicht erkennbar.
+              </p>
+              <p class="text-gray-300 leading-relaxed mt-3">
+                Eine permanente inhaltliche Kontrolle der verlinkten Seiten ist jedoch ohne konkrete 
+                Anhaltspunkte einer Rechtsverletzung nicht zumutbar. Bei Bekanntwerden von 
+                Rechtsverletzungen werden wir derartige Links umgehend entfernen.
+              </p>
+            </div>
+            
+            <!-- Urheberrecht -->
+            <div>
+              <h3 class="text-xl font-semibold text-white mb-4">Urheberrecht</h3>
+              <p class="text-gray-300 leading-relaxed">
+                Die durch die Seitenbetreiber erstellten Inhalte und Werke auf diesen Seiten unterliegen 
+                dem deutschen Urheberrecht. Die Vervielfältigung, Bearbeitung, Verbreitung und jede Art 
+                der Verwertung außerhalb der Grenzen des Urheberrechtes bedürfen der schriftlichen 
+                Zustimmung des jeweiligen Autors bzw. Erstellers. Downloads und Kopien dieser Seite sind 
+                nur für den privaten, nicht kommerziellen Gebrauch gestattet.
+              </p>
+              <p class="text-gray-300 leading-relaxed mt-3">
+                Soweit die Inhalte auf dieser Seite nicht vom Betreiber erstellt wurden, werden die 
+                Urheberrechte Dritter beachtet. Insbesondere werden Inhalte Dritter als solche gekennzeichnet. 
+                Sollten Sie trotzdem auf eine Urheberrechtsverletzung aufmerksam werden, bitten wir um einen 
+                entsprechenden Hinweis. Bei Bekanntwerden von Rechtsverletzungen werden wir derartige 
+                Inhalte umgehend entfernen.
+              </p>
+            </div>
+          </div>
+        </section>
+        
+        <!-- DATENSCHUTZ SECTION -->
+        <section id="datenschutz" aria-labelledby="datenschutz-heading">
+          <h2 id="datenschutz-heading" class="text-3xl font-bold text-white mb-8 pb-4 border-b border-dark-700">
+            Datenschutzerklärung
+          </h2>
+          
+          <div class="space-y-8">
+            <p class="text-gray-300 leading-relaxed">
+              Wir freuen uns sehr über Ihr Interesse an unserem Unternehmen. Datenschutz hat einen 
+              besonders hohen Stellenwert für die Geschäftsleitung der {companyData.name}. 
+              Eine Nutzung der Internetseiten der {companyData.name} ist grundsätzlich ohne jede 
+              Angabe personenbezogener Daten möglich.
+            </p>
+            
+            <!-- Verantwortlicher -->
+            <div>
+              <h3 class="text-xl font-semibold text-white mb-4">1. Verantwortlicher</h3>
+              <p class="text-gray-300">
+                Verantwortlicher im Sinne der Datenschutz-Grundverordnung (DSGVO) und anderer 
+                nationaler Datenschutzgesetze:
+              </p>
+              <address class="not-italic text-gray-300 mt-3 space-y-1">
+                <p class="font-semibold text-white">{companyData.name}</p>
+                <p>Geschäftsführer: {companyData.owner}</p>
+                <p>{companyData.address.street}</p>
+                <p>{companyData.address.city}</p>
+                <p>
+                  <a href={`mailto:${companyData.contact.email}`} class="text-brand hover:underline">
+                    {companyData.contact.email}
+                  </a>
+                </p>
+              </address>
+            </div>
+            
+            <!-- Datenerfassung -->
+            <div>
+              <h3 class="text-xl font-semibold text-white mb-4">2. Erfassung allgemeiner Informationen</h3>
+              <p class="text-gray-300 leading-relaxed">
+                Die {companyData.name} erfasst mit jedem Aufruf der Internetseite durch eine betroffene 
+                Person oder ein automatisiertes System eine Reihe von allgemeinen Daten und Informationen. 
+                Diese Daten werden technisch notwendigerweise übertragen, um die Inhalte der Website korrekt 
+                auszuliefern.
+              </p>
+              <p class="text-gray-300 mt-3">
+                <strong class="text-white">Erfasste Daten:</strong>
+              </p>
+              <ul class="list-disc list-inside text-gray-300 mt-2 space-y-1">
+                <li>IP-Adresse (anonymisiert)</li>
+                <li>Datum und Uhrzeit des Zugriffs</li>
+                <li>Zeitzonendifferenz zur Greenwich Mean Time (GMT)</li>
+                <li>Inhalt der Anforderung (konkrete Seite)</li>
+                <li>Zugriffsstatus/HTTP-Statuscode</li>
+                <li>Übertragene Datenmenge</li>
+                <li>Website, von der die Anforderung kommt (Referrer)</li>
+                <li>Verwendeter Browser und Betriebssystem</li>
+              </ul>
+              <p class="text-gray-300 leading-relaxed mt-3">
+                <strong class="text-white">Rechtsgrundlage:</strong> Art. 6 Abs. 1 lit. f DSGVO (berechtigtes Interesse an 
+                fehlerfreier Funktionsfähigkeit der Website).
+              </p>
+            </div>
+            
+            <!-- Kontaktformular -->
+            <div>
+              <h3 class="text-xl font-semibold text-white mb-4">3. Kontaktformular</h3>
+              <p class="text-gray-300 leading-relaxed">
+                Auf unserer Internetseite ist ein Kontaktformular vorhanden, welches für die elektronische 
+                Kontaktaufnahme genutzt werden kann. Nimmt ein Nutzer diese Möglichkeit wahr, so werden 
+                die in der Eingabemaske eingegeben Daten an uns übermittelt und gespeichert:
+              </p>
+              <ul class="list-disc list-inside text-gray-300 mt-2 space-y-1">
+                <li>Name</li>
+                <li>E-Mail-Adresse</li>
+                <li>Telefonnummer</li>
+                <li>Firma (optional)</li>
+                <li>Inhalt der Nachricht</li>
+              </ul>
+              <p class="text-gray-300 leading-relaxed mt-3">
+                <strong class="text-white">Rechtsgrundlage:</strong> Art. 6 Abs. 1 lit. a DSGVO (Einwilligung) und 
+                Art. 6 Abs. 1 lit. b DSGVO (Vertragserfüllung/vorvertragliche Maßnahmen).
+              </p>
+              <p class="text-gray-300 leading-relaxed mt-3">
+                Alternativ ist eine Kontaktaufnahme über die bereitgestellte E-Mail-Adresse möglich. 
+                In diesem Fall werden die mit der E-Mail übermittelten personenbezogenen Daten des Nutzers 
+                gespeichert.
+              </p>
+            </div>
+            
+            <!-- Cookies -->
+            <div>
+              <h3 class="text-xl font-semibold text-white mb-4">4. Cookies</h3>
+              <p class="text-gray-300 leading-relaxed">
+                Wir verwenden auf unserer Website ausschließlich technisch notwendige Cookies. 
+                Diese sind für den Betrieb der Website erforderlich und können nicht deaktiviert werden.
+              </p>
+              <p class="text-gray-300 leading-relaxed mt-3">
+                <strong class="text-white">Verwendete Cookies:</strong>
+              </p>
+              <ul class="list-disc list-inside text-gray-300 mt-2 space-y-1">
+                <li><strong>cellmove_cookie_consent:</strong> Speichert Ihre Cookie-Einstellung (Dauer: 1 Jahr)</li>
+                <li><strong>Session-Cookies:</strong> Technisch notwendig für die Formularfunktionalität (Dauer: Sitzung)</li>
+              </ul>
+              <p class="text-gray-300 leading-relaxed mt-3">
+                <strong class="text-white">Rechtsgrundlage:</strong> Art. 6 Abs. 1 lit. f DSGVO (berechtigtes Interesse) 
+                bzw. § 25 Abs. 2 Nr. 2 TTDSG.
+              </p>
+            </div>
+            
+            <!-- Externe Dienste -->
+            <div>
+              <h3 class="text-xl font-semibold text-white mb-4">5. Keine externen Tracking-Dienste</h3>
+              <p class="text-gray-300 leading-relaxed">
+                Wir verzichten bewusst auf den Einsatz von externen Analyse- und Tracking-Tools wie 
+                Google Analytics. Es werden keine Daten an Dritte zu Werbe- oder Analysezwecken übermittelt.
+              </p>
+              <p class="text-gray-300 leading-relaxed mt-3">
+                Das Kontaktformular nutzt den Dienst Web3Forms für die Formularübertragung. 
+                Die Datenübertragung erfolgt verschlüsselt. Weitere Informationen finden Sie in der 
+                <a href="https://web3forms.com/privacy" target="_blank" rel="noopener noreferrer" class="text-brand hover:underline">
+                  Datenschutzerklärung von Web3Forms
+                </a>.
+              </p>
+            </div>
+            
+            <!-- Speicherdauer -->
+            <div>
+              <h3 class="text-xl font-semibold text-white mb-4">6. Speicherdauer</h3>
+              <p class="text-gray-300 leading-relaxed">
+                Die personenbezogenen Daten der betroffenen Person werden gelöscht oder gesperrt, 
+                sobald der Zweck der Speicherung entfällt. Eine Speicherung kann darüber hinaus erfolgen, 
+                wenn dies durch den europäischen oder nationalen Gesetzgeber in unionsrechtlichen Verordnungen, 
+                Gesetzen oder sonstigen Vorschriften, denen der Verantwortliche unterliegt, vorgesehen wurde.
+              </p>
+              <p class="text-gray-300 leading-relaxed mt-3">
+                <strong class="text-white">Kontaktdaten:</strong> Werden für die Bearbeitung Ihrer Anfrage 
+                und anschließend für 2 Jahre zur Dokumentation der Geschäftsbeziehung gespeichert 
+                (Handels- und Steuerrechtliche Aufbewahrungspflichten).
+              </p>
+            </div>
+            
+            <!-- Betroffenenrechte -->
+            <div>
+              <h3 class="text-xl font-semibold text-white mb-4">7. Rechte der betroffenen Person</h3>
+              <p class="text-gray-300 leading-relaxed">
+                Ihnen stehen als Betroffene/r nach der DSGVO folgende Rechte zu:
+              </p>
+              <ul class="list-disc list-inside text-gray-300 mt-2 space-y-2">
+                <li><strong class="text-white">Recht auf Auskunft</strong> (Art. 15 DSGVO)</li>
+                <li><strong class="text-white">Recht auf Berichtigung</strong> (Art. 16 DSGVO)</li>
+                <li><strong class="text-white">Recht auf Löschung</strong> (Art. 17 DSGVO)</li>
+                <li><strong class="text-white">Recht auf Einschränkung der Verarbeitung</strong> (Art. 18 DSGVO)</li>
+                <li><strong class="text-white">Recht auf Datenübertragbarkeit</strong> (Art. 20 DSGVO)</li>
+                <li><strong class="text-white">Widerspruchsrecht</strong> (Art. 21 DSGVO)</li>
+              </ul>
+              <p class="text-gray-300 leading-relaxed mt-4">
+                Zur Ausübung dieser Rechte kontaktieren Sie uns bitte unter den oben angegebenen 
+                Kontaktdaten.
+              </p>
+            </div>
+            
+            <!-- Beschwerderecht -->
+            <div>
+              <h3 class="text-xl font-semibold text-white mb-4">8. Beschwerderecht bei der Aufsichtsbehörde</h3>
+              <p class="text-gray-300 leading-relaxed">
+                Unbeschadet eines anderweitigen verwaltungsrechtlichen oder gerichtlichen Rechtsbehelfs 
+                steht Ihnen das Recht auf Beschwerde bei einer Aufsichtsbehörde zu, wenn Sie der Ansicht 
+                sind, dass die Verarbeitung Ihrer personenbezogenen Daten gegen die DSGVO verstößt.
+              </p>
+              <p class="text-gray-300 mt-3">
+                <strong class="text-white">Zuständige Aufsichtsbehörde:</strong>
+              </p>
+              <address class="not-italic text-gray-300 mt-2">
+                Der Landesbeauftragte für den Datenschutz und die Informationsfreiheit Baden-Württemberg<br/>
+                Lautenschlagerstraße 20<br/>
+                70173 Stuttgart<br/>
+                <a href="https://www.bfdi.bund.de" target="_blank" rel="noopener noreferrer" class="text-brand hover:underline">
+                  www.bfdi.bund.de
+                </a>
+              </address>
+            </div>
+          </div>
+        </section>
+        
+        <!-- COOKIE-RICHTLINIE SECTION -->
+        <section id="cookies" aria-labelledby="cookies-heading">
+          <h2 id="cookies-heading" class="text-3xl font-bold text-white mb-8 pb-4 border-b border-dark-700">
+            Cookie-Richtlinie
+          </h2>
+          
+          <div class="space-y-6">
+            <p class="text-gray-300 leading-relaxed">
+              Diese Cookie-Richtlinie erläutert, welche Cookies auf unserer Website verwendet werden 
+              und zu welchem Zweck.
+            </p>
+            
+            <div>
+              <h3 class="text-xl font-semibold text-white mb-4">Was sind Cookies?</h3>
+              <p class="text-gray-300 leading-relaxed">
+                Cookies sind kleine Textdateien, die auf Ihrem Endgerät gespeichert werden, wenn Sie 
+                eine Website besuchen. Sie ermöglichen es der Website, Ihre Aktionen und Präferenzen 
+                (wie Login, Sprache, Schriftgröße und andere Anzeigepräferenzen) über einen bestimmten 
+                Zeitraum zu speichern, damit Sie sie nicht bei jedem erneuten Besuch der Website oder 
+                beim Wechsel von einer Seite zur anderen neu eingeben müssen.
+              </p>
+            </div>
+            
+            <div>
+              <h3 class="text-xl font-semibold text-white mb-4">Welche Cookies verwenden wir?</h3>
+              <div class="overflow-x-auto">
+                <table class="w-full text-left border-collapse">
+                  <thead>
+                    <tr class="border-b border-dark-700">
+                      <th class="py-3 pr-4 text-white font-semibold">Name</th>
+                      <th class="py-3 pr-4 text-white font-semibold">Zweck</th>
+                      <th class="py-3 pr-4 text-white font-semibold">Dauer</th>
+                      <th class="py-3 text-white font-semibold">Typ</th>
+                    </tr>
+                  </thead>
+                  <tbody class="text-gray-300">
+                    <tr class="border-b border-dark-700/50">
+                      <td class="py-3 pr-4 font-mono text-sm">cellmove_cookie_consent</td>
+                      <td class="py-3 pr-4">Speichert Ihre Cookie-Einwilligung</td>
+                      <td class="py-3 pr-4">1 Jahr</td>
+                      <td class="py-3"><span class="bg-brand/20 text-brand px-2 py-1 rounded text-xs">Essentiell</span></td>
+                    </tr>
+                    <tr class="border-b border-dark-700/50">
+                      <td class="py-3 pr-4 font-mono text-sm">session_*</td>
+                      <td class="py-3 pr-4">Technische Session-Verwaltung</td>
+                      <td class="py-3 pr-4">Sitzung</td>
+                      <td class="py-3"><span class="bg-brand/20 text-brand px-2 py-1 rounded text-xs">Essentiell</span></td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+            
+            <div>
+              <h3 class="text-xl font-semibold text-white mb-4">Verwaltung von Cookies</h3>
+              <p class="text-gray-300 leading-relaxed">
+                Sie können Ihre Cookie-Einstellungen jederzeit ändern, indem Sie das Cookie-Banner am 
+                unteren Bildschirmrand erneut öffnen. Essenzielle Cookies können nicht deaktiviert werden, 
+                da sie für den Betrieb der Website notwendig sind.
+              </p>
+              <p class="text-gray-300 leading-relaxed mt-3">
+                Die meisten Browser erlauben es Ihnen außerdem, Cookies in den Einstellungen zu verwalten 
+                oder zu löschen. Bitte beachten Sie, dass das Deaktivieren von Cookies die Funktionalität 
+                dieser und vieler anderer Websites beeinträchtigen kann.
+              </p>
+            </div>
+          </div>
+        </section>
+        
+        <!-- Last Updated -->
+        <div class="text-center pt-8 border-t border-dark-700">
+          <p class="text-gray-500 text-sm">
+            Stand: März 2026
+          </p>
+        </div>
+      </div>
+    </div>
+  </main>
+  
+  <Footer />
+  <CookieBanner />
+</Layout>
